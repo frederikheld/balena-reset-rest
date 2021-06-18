@@ -5,7 +5,7 @@
 
 if [ -z "${DEBUG_OUT}" ]
 then
-    DEBUG_OUT="/dev/null" # route output to /dev/null if no serial
+    DEBUG_OUT="/dev/null" # route output to /dev/null if no serial or file path is configured
 fi
 ENDPOINTS_FILE="endpoints.txt"
 
