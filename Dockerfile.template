@@ -1,0 +1,15 @@
+FROM balenalib/%%BALENA_MACHINE_NAME%%-debian:buster-run
+
+# ENV variables will be overridden by variables defined
+# in the `environment` section of docker-compose.yml.
+# ENV GPIO_RESET_IN 14 
+# ENV GPIO_ACK_OUT 3
+
+RUN install_packages dbus
+
+WORKDIR /app
+
+COPY reset.sh .
+COPY endpoints.txt .
+
+CMD ["/bin/bash", "-c", "bash reset.sh"]
