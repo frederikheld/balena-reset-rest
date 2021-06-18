@@ -9,7 +9,7 @@ then
 fi
 ENDPOINTS_FILE="endpoints.txt"
 
-echo "DEBUG_OUT=${DEBUG_OUT}" | tee "/dev/ttyS0"
+#echo "DEBUG_OUT=${DEBUG_OUT}" | tee "/dev/ttyS0"
 
 # -- setup
 
