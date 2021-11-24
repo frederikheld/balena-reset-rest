@@ -4,6 +4,7 @@ This service is designed for devices that run [Balena OS](https://www.balena.io/
 
 This service can be used to provide a way to factory-reset a Balena device which is not accessible via network (hence the name). Since you can call any REST endpoint on any device, possible use-cases are not limited to resetting a device.
 
+
 ## Setup
 
 The device will run all endpoints configured in `endpoints.txt`. You have to create this file and add at least one REST endpoint. The information needs to be formatted as follows:
@@ -12,9 +13,16 @@ The device will run all endpoints configured in `endpoints.txt`. You have to cre
 POST    200     http://example.com/endpoint/to/call
 ```
 
-The first column defines the http method, the second column the expected http status code that indicates success (all other codes will be considered a failure!) and the third column is the endpoint to call. Columns are separated by whitespaces. The file can contain as many lines as you wish. Blank lines will be ignored.
+The first column defines the http method, the second column the expected http status code that indicates success (all other codes will be considered as failure!) and the third column is the endpoint to call. Columns are separated by whitespaces. The file can contain as many lines as you wish. Blank lines will be ignored.
 
 You can also look into `endpoints-example.txt` to see how it should look like.
+
+If you added the _balena-reset-rest_ repository as a Git submodule to your project and want to commit the endpoints configuration to your project repository, you can create `endpoints.txt` outside of the submodule and make it available via symlink:
+
+```sh
+$ cd balena-reset-rest
+$ ln -s ../reset-endpoints.txt ./endpoints.txt
+```
 
 To integrate this service into your Balena multi-container setup, add this snippet to your `docker-compose.yml`:
 
